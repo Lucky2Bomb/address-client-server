@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack --mode=development",
-    "start": "webpack serve --mode=development --port=80"
+    "start": "node index.js",
+    "start-dev": "webpack serve --mode=development --port=80"
   },
   "author": "Airat Ahunov",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "@types/react-redux": "^7.1.24",
     "axios": "^0.26.1",
+    "express": "^4.17.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^7.2.8"
