@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack --mode=development",
-    "start": "npx webpack --mode=development --watch",
+    "start-dev": "npx webpack --mode=development --watch",
+    "start": "node ./build/index.js",
     "test": "jest"
   },
   "author": "Airat Ahunov",
