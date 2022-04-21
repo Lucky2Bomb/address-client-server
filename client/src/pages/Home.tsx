@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Menu from '../components/Menu/Menu';
 import Branch from '../components/Branch';
-import config from "../config.json";
-import { useAppDispatch, useAppSelector } from '../store';
-import axios from 'axios';
-import { AddressModel } from '../models/address';
-import { setAddress } from '../store/reducers/addressReducer';
+import { useAppSelector } from '../store';
 import Loading from '../components/Loading';
+import { addressAPI } from '../service/AddressService';
 
 function Home() {
-    const [isLoading, setIsLoading] = useState(false);
+    const { chain } = useAppSelector(state => state.addresses);
 
-    const dispatch = useAppDispatch();
-    const { address, chain } = useAppSelector(state => state.addresses);
+    const params = JSON.stringify(chain.filter(item => item.active).map(item => item.type));
 
-    const params = { config: JSON.stringify(chain.filter(item => item.active).map(item => item.type)) };
+    const { data, error, isError, isLoading } = addressAPI.useFetchAddressQuery(params);
 
-    useEffect(() => {
-        setIsLoading(true);
-        axios.get<AddressModel>(`${config.API_URL}/address`, { params }).then(item => dispatch(setAddress(item.data))).finally(() => setIsLoading(false));
-        console.log("render home")
-    }, [chain]);
-
-    if(isLoading) {
+    if (isLoading) {
         return <Loading />
     }
 
-    return (
-        <div>
-            <Menu />
-            <Branch data={address} maxLevel={chain.filter(item => item.active).length} />
-        </div>
-    );
+    if (isError) {
+        return (<>error: {error}</>);
+    }
+
+    if (data) {
+        return (
+            <div>
+                <Menu />
+                <Branch data={data} maxLevel={chain.filter(item => item.active).length} />
+            </div>
+        );
+    }
+
+    return <Loading />;
 }
 
 export default Home;

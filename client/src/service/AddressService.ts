@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { AddressModel } from "../models/address";
 import { CityModel } from "../models/city";
 import config from "./../config.json";
 
@@ -13,5 +14,14 @@ export const addressAPI = createApi({
             }),
             providesTags: (result) => ["City"]
         }),
+        fetchAddress: build.query<AddressModel, string>({
+            query: (config: string) => ({
+                url: `/address`,
+                params: {
+                    config
+                }
+            }),
+            providesTags: (result) => [{ type: "Address" }]
+        })
     }),
 });
