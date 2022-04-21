@@ -4,5 +4,6 @@
         "city",
         "district",
         "street"
-    ]
+    ],
+    "CLIENT_PORT": 80
 }
