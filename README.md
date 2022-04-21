@@ -1,14 +1,16 @@
 # Common info
 ## server
 * set up mongoDB in *server/.env*
+* /server `npm install` - start to install packages
 * /server `npm run build` - build project in production mode
 * /server `npm start` - start server in development mode
-* `POST {url}/seed/all` - seeded all data in mongoDB from src/seeds
+* `POST {server url}/seed/all` - seeded all data in mongoDB from src/seeds
 
 ## client
 * set up url to api in *client/src/config.json*
-* `npm run build` - build project in production mode
-* `npm start` - start builded server
+* /client `npm install` - start to install packages
+* /client `npm run build` - build project in production mode
+* /client `npm start` - start builded server
 
 # client - React app
 file *client/src/config.json* has initial settings (api url, chain of address)
