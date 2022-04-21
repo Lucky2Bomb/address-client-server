@@ -17,7 +17,6 @@ file *client/src/config.json* has initial settings (api url, chain of address)
 * `npm run build` - build project in production mode
 * `npm run dev` - build project in development mode
 * `npm start` - start builded server
-* `npm start-dev` - build and start project in development mode (webpack server)
 
 # server - Express app
 file *server/.env* has initial settings of database (host, port, db name)
